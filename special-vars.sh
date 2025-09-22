@@ -8,3 +8,5 @@ echo "current directory: $PWD"
 echo "who is running the script: $USER"
 echo "Home directory of the user: $HOME"
 echo "PID of this script: $$"
+sleep 50 &   
+echo "PID of the last commnad in background" is: $!"
