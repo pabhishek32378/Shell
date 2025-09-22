@@ -2,11 +2,11 @@
 
 #DATE=$(date) 
 
-Start_Time=$(DATE +%s)
+Start_Time=$(date +%s)
 
-sleep 10 
+sleep 10
 
-End_Time=$(DATE +%s)
+End_Time=$(date +%s)
 
 Total_Time=$((End_Time-$Start_Time))
 
