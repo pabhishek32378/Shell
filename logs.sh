@@ -12,7 +12,7 @@ SCRIPT_NAME=$( echo $0 | cut -d "." -f1)
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
 
 mkdir -p $LOGS_FOLDER
-echo "Script started executed at: $(date)"
+echo "Script started executed at: $(date)" | tee -a $LOG_FILE
 
 if [ $USERID -ne 0 ]; then
     echo "error:: please run this script with root privilages"
@@ -21,10 +21,10 @@ fi
 
 VALIDATE(){  #Create a function
     if [ $1 -ne 0 ]; then
-        echo -e "Installing $2..........$R failure $N"
+        echo -e "Installing $2..........$R failure $N" | tee -a $LOG_FILE
         exit 1
     else
-        echo "installing $2 .... $G sucess $N"
+        echo "installing $2 .... $G sucess $N" | tee -a $LOG_FILE
     fi
 }
 
@@ -34,7 +34,7 @@ if [ $? -ne 0 ]; then
     dnf install mysql -y &>>$LOG_FILE
     VALIDATE $? "MYSQL"      # calling the function and passing inputs
 else
-    echo -e "Mysql already exist ... $Y skipping $N"
+    echo -e "Mysql already exist ... $Y skipping $N" | tee -a $LOG_FILE
 fi
 
 dnf list installed nginx &>>$LOG_FILE
@@ -43,5 +43,5 @@ if [ $? -ne 0 ]; then
     dnf install nginx -y &>>$LOG_FILE
     VALIDATE $? "nginx"
 else
-    echo -e "nginx already exist ... $Y skipping $N"
+    echo -e "nginx already exist ... $Y skipping $N" | tee -a $LOG_FILE
 fi
