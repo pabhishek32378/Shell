@@ -7,7 +7,7 @@ if [ $USERID -ne 0 ]; then
     exit 1 
 fi
 
-VALIDATE(){
+VALIDATE(){  #Create a function
     if [ $1 -ne 0 ]; then
         echo "error:: Installing $2 is failure"
         exit 1
@@ -18,7 +18,7 @@ VALIDATE(){
 
 
 dnf install mysql -y
-VALIDATE $? "MYSQL"
+VALIDATE $? "MYSQL"      # calling the function and passing inputs
 
 dnf install nginx -y
 VALIDATE $? "nginx"
