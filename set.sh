@@ -2,7 +2,7 @@
 
 set -e    #-e means exit when error occurs
 error(){
-    echo "there is and error"
+    echo "there is an error in $LINENO, Command is: $BASH_COMMAND"
 }
 
 trap error ERR
